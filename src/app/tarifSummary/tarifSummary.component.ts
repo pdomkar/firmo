@@ -13,7 +13,7 @@ import 'rxjs/add/operator/toPromise';
 export class TarifSummaryComponent implements OnInit {
   tarifRegistration: any;
   tarifs: any;
-  tarifsPrice: any
+  tarifsPrice: any;
   agreeValue: boolean = false;
   showError: boolean = false;
 
@@ -61,11 +61,7 @@ export class TarifSummaryComponent implements OnInit {
     }
 
   onChange(): void {
-    if (this.agreeValue) {
-      this.showError = false;
-    } else {
-      this.showError = true;
-    }
+      this.showError = !this.agreeValue;
   }
 
 

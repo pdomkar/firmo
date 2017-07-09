@@ -16,9 +16,7 @@ export class TarifsComponent implements OnInit {
       private router: Router,
       private localStorageService: LocalStorageService,
       private Consts: Consts
-    ) {
-
-    }
+    ) {   }
 
     ngOnInit(): void {
       this.tarifs = Consts.TARIFS;
@@ -26,11 +24,9 @@ export class TarifsComponent implements OnInit {
     }
 
 
-
     chooseTarif(type: number): void {
       let tarifRegistration: any = this.localStorageService.get(Consts.KEY_TARIF_REGISTRATION);
       if (tarifRegistration == null) {
-        console.log(tarifRegistration == null);
         tarifRegistration = new TarifRegistration(type);
       } else {
         tarifRegistration.type = type;

@@ -6,14 +6,15 @@ import { AppComponent }  from './app.component';
 import { TarifsComponent } from './tarifs/tarifs.component';
 import {PageNotFoundComponent} from './page-not-found.component';
 import { LocalStorageModule } from 'angular-2-local-storage';
-import {TarifUserComponent} from "./tarifUser/tarifUser.component";
-import {Consts} from "./consts";
-import {TarifInfoComponent} from "./tarifInfo/tarifInfo.component";
-import {FormsModule} from "@angular/forms";
-import {EqualValidator} from "./tarifUser/equalValidator.directive";
-import {TarifSummaryComponent} from "./tarifSummary/tarifSummary.component";
-import {HttpModule} from "@angular/http";
-import {NavigatorComponent} from "./navigator/navigator.component";
+import {TarifUserComponent} from './tarifUser/tarifUser.component';
+import {Consts} from './consts';
+import {TarifInfoComponent} from './tarifInfo/tarifInfo.component';
+import {FormsModule} from '@angular/forms';
+import {EqualValidator} from './tarifUser/equalValidator.directive';
+import {TarifSummaryComponent} from './tarifSummary/tarifSummary.component';
+import {HttpModule} from '@angular/http';
+import {NavigatorComponent} from './navigator/navigator.component';
+import {AuthGuard} from './auth-guard.service';
 
 
 @NgModule({
@@ -24,6 +25,6 @@ import {NavigatorComponent} from "./navigator/navigator.component";
   declarations: [ AppComponent, TarifsComponent, TarifUserComponent, TarifInfoComponent,
     TarifSummaryComponent, NavigatorComponent, EqualValidator, PageNotFoundComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [ Consts ]
+  providers: [ Consts, AuthGuard ]
 })
 export class AppModule { }

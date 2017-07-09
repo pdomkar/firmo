@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import { LocalStorageService } from 'angular-2-local-storage';
-import { TarifRegistration } from '../tarifRegistration';
 import { Consts } from '../consts';
 @Component({
     selector: 'my-navigator',
@@ -22,7 +21,5 @@ export class NavigatorComponent implements OnInit {
     ngOnInit(): void {
       this.tarifRegistration = this.localStorageService.get(Consts.KEY_TARIF_REGISTRATION);
     }
-
-
 
 }

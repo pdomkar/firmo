@@ -1,10 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 import { LocalStorageService } from 'angular-2-local-storage';
-import { TarifRegistration } from '../tarifRegistration';
 import { Consts } from '../consts';
-import {NgForm} from "@angular/forms";
-import {VALIDATION_MESSAGE} from "./validation-messages";
+import {NgForm} from '@angular/forms';
+import {VALIDATION_MESSAGE} from './validation-messages';
 @Component({
     selector: 'my-tarif-user',
     templateUrl: './tarifUser.component.html'
