@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    let tarifRegistration = this.localStorageService.get(Consts.KEY_TARIF_REGISTRATION);
+    let tarifRegistration: any = this.localStorageService.get(Consts.KEY_TARIF_REGISTRATION);
     if (state.url === '/tarifUser' && tarifRegistration == null) {
       this.router.navigate(['/tarifs']);
       return false;
