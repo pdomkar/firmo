@@ -1,79 +1,73 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, OnChanges} from '@angular/core';
 import {Router} from "@angular/router";
 import { LocalStorageService } from 'angular-2-local-storage';
 import { TarifRegistration } from '../tarifRegistration';
 import { Consts } from '../consts';
-import {NgForm} from "@angular/forms";
-import {VALIDATION_MESSAGE} from "./validation-messages";
+import {Http, Headers} from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 @Component({
-    selector: 'my-tarif-info',
-    templateUrl: './tarifInfo.component.html'
+    selector: 'my-tarif-summary',
+    templateUrl: './tarifSummary.component.html'
 })
 
-export class TarifInfoComponent implements OnInit {
+export class TarifSummaryComponent implements OnInit {
   tarifRegistration: any;
-  passwordConfirmValue: string;
-  @ViewChild('tarifInfoForm') currentForm: NgForm;
-  cosmonautForm: NgForm;
+  tarifs: any;
+  tarifsPrice: any
+  agreeValue: boolean = false;
+  showError: boolean = false;
+
 
     constructor(
       private router: Router,
       private localStorageService: LocalStorageService,
-      private Consts: Consts
+      private Consts: Consts,
+      private http: Http
     ) { }
 
     ngOnInit(): void {
       this.tarifRegistration = this.localStorageService.get(Consts.KEY_TARIF_REGISTRATION);
+      if (this.tarifRegistration == null) {
+        this.router.navigate(['/tarifs']);
+        return;
+      } else if (!this.tarifRegistration.email) {
+        this.router.navigate(['/tarifUser']);
+        return;
+      } else if (!this.tarifRegistration.name) {
+        this.router.navigate(['/tarifInfo']);
+        return;
+      }
+      this.tarifs = Consts.TARIFS;
+      this.tarifsPrice = Consts.TARIFS_PRICE;
     }
 
     onSubmit(): void {
-      this.localStorageService.set(Consts.KEY_TARIF_REGISTRATION, this.tarifRegistration);
-      this.router.navigate(['/tarifInfo']);
-    }
-
-  ngAfterViewChecked() {
-    this.formChanged();
-  }
-
-  formChanged() {
-    if (this.currentForm === this.cosmonautForm) { return; }
-    this.cosmonautForm = this.currentForm;
-    if (this.cosmonautForm) {
-      this.cosmonautForm.valueChanges
-        .subscribe(data => this.onValueChanged(data));
-    }
-  }
-
-  /**
-   * Is called after each form change. Validat forms and assign validation message
-   * @param data
-   */
-  onValueChanged(data?: any) {
-    if (!this.cosmonautForm) { return; }
-    const form = this.cosmonautForm.form;
-
-    for (const field in this.formErrors) {
-      // clear previous error message (if any)
-      this.formErrors[field] = '';
-      const control = form.get(field);
-
-      if (control && control.dirty && !control.valid) {
-        const messages = VALIDATION_MESSAGE[field];
-        for (const key in control.errors) {
-          this.formErrors[field] += messages[key] + ' ';
-        }
+      if (this.agreeValue) {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        let data = JSON.stringify(this.tarifRegistration);
+        this.http.post(Consts.URL_SEND, data, {headers: headers}).toPromise()
+          .then( () => {
+            this.localStorageService.remove(Consts.KEY_TARIF_REGISTRATION);
+            this.router.navigate(['/tarifs']);
+          })
+          .catch( () => {
+            this.localStorageService.remove(Consts.KEY_TARIF_REGISTRATION);
+            this.router.navigate(['/tarifs']);
+          });
+      } else {
+        this.showError = true;
       }
     }
+
+  onChange(): void {
+    if (this.agreeValue) {
+      this.showError = false;
+    } else {
+      this.showError = true;
+    }
   }
 
-  formErrors = {
-    'name': '',
-    'ico': '',
-    'dic': '',
-    'street': '',
-    'psc': '',
-    'city': '',
-    'country': ''
-  };
+
 
 }

@@ -1,0 +1,21 @@
+{
+  "name": "firmo",
+  "description": "",
+  "authors": [],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "components-font-awesome": "4.7.0"
+  },
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.6"
+  }
+}

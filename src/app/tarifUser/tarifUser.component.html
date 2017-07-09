@@ -1,27 +1,43 @@
+<my-navigator [page]="2"></my-navigator>
+<div class="clearfix"></div>
 <h3 class="pull-left">
-    Tarify
+    Tarif - uživatelská data
 </h3>
-<div class="row">
-  <div class="col-sm-6 col-md-3">
-    <div>
-      <button type="button" (click)="chooseTarif(1)" class="btn">BASIC Plán</button>
+<div class="clearfix"></div>
+<form (ngSubmit)="onSubmit()" #tarifUserForm="ngForm" class="col-sm-offset-1 col-lg-offset-2 col-xs-12 col-sm-10 col-lg-8">
+  <div class="form-group">
+    <label for="email">Email*</label>
+    <input type="text" class="form-control" id="email"
+           required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-]+$" minlength="5" maxlength="50"
+           [(ngModel)]="tarifRegistration.email" name="email"
+           #name="ngModel">
+    <div *ngIf="formErrors.email" class="my-alert-danger">
+      <p *ngFor="let error of formErrors.email">{{ error }}</p>
     </div>
   </div>
-  <div class="col-sm-6 col-md-3">
-    <div>
-      <button type="button" (click)="chooseTarif(2)" class="btn">STANDARD Plán</button>
+  <div class="form-group">
+    <label for="password">Heslo*</label>
+    <input type="password" class="form-control" id="password"
+           required minlength="5"
+           [(ngModel)]="tarifRegistration.password" name="password" #password="ngModel">
+    <div *ngIf="formErrors.password" class="my-alert-danger">
+      <p *ngFor="let error of formErrors.password">{{ error }}</p>
     </div>
   </div>
-  <div class="col-sm-6 col-md-3">
-    <div>
-      <button type="button" (click)="chooseTarif(3)" class="btn">PROFI Plán</button>
+  <div class="form-group">
+    <label for="passwordConfirm">Heslo potvrzení*</label>
+    <input type="password" class="form-control" id="passwordConfirm"
+           required validateEqual="password" minlength="5"
+           [(ngModel)]="passwordConfirmValue" name="passwordConfirm" #passwordConfirm="ngModel" [disabled]="!password.valid">
+    <div *ngIf="formErrors.passwordConfirm" class="my-alert-danger">
+      <p *ngFor="let error of formErrors.passwordConfirm">{{ error }}</p>
     </div>
   </div>
-  <div class="col-sm-6 col-md-3">
-    <div>
-      <button type="button" (click)="chooseTarif(4)" class="btn">ENTERPRISE Plán</button>
-    </div>
-  </div>
-</div>
 
+  <div class="clearfix"></div>
 
+  <div class="form-group text-right">
+    <a routerLink="/" class="btn btn-default pull-left">Zpět na tarify</a>
+    <button type="submit" [disabled]="!tarifUserForm.form.valid" class="btn btn-success">Zadat doplňující údaje</button>
+  </div>
+</form>

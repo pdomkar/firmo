@@ -1,40 +1,12 @@
-<h3 class="pull-left">
-    Tarify
-</h3>
-<div class="clearfix"></div>
-<div class="row">
-  <div class="col-sm-6 col-md-3 tarifBlock">
-      <h4>{{tarifs[0]}} Plán</h4>
-      <div class="price">
-        <span *ngIf="tarifsPrice[0] !== 'Individual'">{{tarifsPrice[0]}},- Kč (bez DPH)</span>
-        <span *ngIf="tarifsPrice[0] === 'Individual'">{{tarifsPrice[0]}}</span>
-      </div>
-      <button type="button" (click)="chooseTarif(0)" class="btn btn-primary">Vybrat</button>
-  </div>
-  <div class="col-sm-6 col-md-3 tarifBlock">
-      <h4>{{tarifs[1]}} Plán</h4>
-      <div class="price">
-        <span *ngIf="tarifsPrice[1] !== 'Individual'">{{tarifsPrice[1]}},- Kč (bez DPH)</span>
-        <span *ngIf="tarifsPrice[1] === 'Individual'">{{tarifsPrice[1]}}</span>
-      </div>
-      <button type="button" (click)="chooseTarif(1)" class="btn btn-primary">Vybrat</button>
-  </div>
-  <div class="col-sm-6 col-md-3 tarifBlock">
-      <h4>{{tarifs[2]}} Plán</h4>
-      <div class="price">
-        <span *ngIf="tarifsPrice[2] !== 'Individual'">{{tarifsPrice[2]}},- Kč (bez DPH)</span>
-        <span *ngIf="tarifsPrice[2] === 'Individual'">{{tarifsPrice[2]}}</span>
-      </div>
-      <button type="button" (click)="chooseTarif(2)" class="btn btn-primary">Vybrat</button>
-  </div>
-  <div class="col-sm-6 col-md-3 tarifBlock">
-      <h4>{{tarifs[3]}} Plán</h4>
-      <div class="price">
-        <span *ngIf="tarifsPrice[3] !== 'Individual'">{{tarifsPrice[3]}},- Kč (bez DPH)</span>
-        <span *ngIf="tarifsPrice[3] === 'Individual'">{{tarifsPrice[3]}}</span>
-      </div>
-      <button type="button" (click)="chooseTarif(3)" class="btn btn-primary center-block">Vybrat</button>
-  </div>
+<div class="myNav">
+  <a routerLink="/tarifs" [ngClass]="{'navItem': true, 'active': page == 1, 'accessible': true}">1</a>
+  <span class="fa fa-arrow-right" aria-hidden="true"></span>
+  <a routerLink="/tarifUser"  *ngIf="tarifRegistration != null" [ngClass]="{'navItem': true, 'active': page == 2, 'accessible': true}">2</a>
+  <span *ngIf="tarifRegistration == null" class="navItem">2</span>
+  <span class="fa fa-arrow-right" aria-hidden="true"></span>
+  <a routerLink="/tarifInfo" *ngIf="tarifRegistration != null && tarifRegistration.email" [ngClass]="{'navItem': true, 'active': page == 3, 'accessible': true}">3</a>
+  <span *ngIf="tarifRegistration == null || !tarifRegistration.email" class="navItem">3</span>
+  <span class="fa fa-arrow-right" aria-hidden="true"></span>
+  <a routerLink="/tarifSummary" *ngIf="tarifRegistration != null && tarifRegistration.name" [ngClass]="{'navItem': true, 'active': page == 4, 'accessible': true}">4</a>
+  <span *ngIf="tarifRegistration == null || !tarifRegistration.name" class="navItem">4</span>
 </div>
-
-

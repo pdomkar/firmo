@@ -1,20 +1,17 @@
 export const  VALIDATION_MESSAGE = {
-    'name': {
-        'required':      'Vyplňte prosím jméno.',
-        'minlength':     'Jméno by mělo mít alespoň 2 znaky.',
-        'maxlength':     'Jméno by mělo mít maximálně 20 znaky.'
+    'email': {
+        'required':      'Vyplňte prosím email.',
+        'minlength':     'Email by mělo mít alespoň 5 znaky.',
+        'maxlength':     'Email by mělo mít maximálně 50 znaky.',
+        'pattern':       'Vyplňte prosím validní email.'
     },
-    'surname': {
-        'required':      'Vyplňte prosím příjmení.',
-        'minlength':     'Příjmení by mělo mít alespoň 2 znaky.',
-        'maxlength':     'Příjmení by mělo mít maximálně 20 znaky.'
+    'password': {
+        'required':      'Vyplňte prosím heslo.',
+        'minlength':     'Heslo by mělo mít alespoň 5 znaky.'
     },
-    'born': {
-        'required':      'Vyplňte prosím datum narození.'
-    },
-    'power': {
-        'required':      'Vyplňte prosím superschopnost.',
-        'minlength':     'Superschopnost by měla mít alespoň 2 znaky.',
-        'maxlength':     'Superschopnost by měla mít maximálně 50 znaků.'
+    'passwordConfirm': {
+        'minlength':     'Heslo pro potvrzení by mělo mít alespoň 5 znaky.',
+        'required':      'Vyplňte prosím heslo pro potvrzení.',
+        'validateEqual': 'Heslo pro potvrzení se neshoduje s heslem.'
     }
 };

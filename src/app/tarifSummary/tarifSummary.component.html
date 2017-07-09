@@ -1,89 +1,80 @@
+<my-navigator [page]="4"></my-navigator>
+<div class="clearfix"></div>
 <h3 class="pull-left">
-    Tarif - Doplňující data
+    Tarif - Přehled a dokončení
 </h3>
-
-<form (ngSubmit)="onSubmit()" #tarifInfoForm="ngForm">
-  <div class="form-group">
-    <label for="name">Jméno</label>
-    <input type="text" class="form-control" id="name"
-           required minlength="2" maxlength="50"
-           [(ngModel)]="tarifRegistration.name" name="name"
-           #name="ngModel">
-    <div *ngIf="formErrors.name" class="my-alert-danger">
-      <p>{{ formErrors.name }}</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="ico">IČO</label>
-    <input type="text" class="form-control" id="ico"
-           [(ngModel)]="tarifRegistration.name" name="ico"
-           #ico="ngModel">
-    <div *ngIf="formErrors.ico" class="my-alert-danger">
-      <p>{{ formErrors.ico }}</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="dic">DIČ</label>
-    <input type="text" class="form-control" id="dic"
-           [(ngModel)]="tarifRegistration.dic" name="dic"
-           #dic="ngModel">
-    <div *ngIf="formErrors.dic" class="my-alert-danger">
-      <p>{{ formErrors.dic }}</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="phone">Telefon</label>
-    <input type="text" class="form-control" id="phone"
-           [(ngModel)]="tarifRegistration.phone" name="phone"
-           #phone="ngModel">
-    <div *ngIf="formErrors.phone" class="my-alert-danger">
-      <p>{{ formErrors.phone }}</p>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="street">Ulice a číslo</label>
-    <input type="text" class="form-control" id="street"
-           [(ngModel)]="tarifRegistration.street" name="street"
-           #street="ngModel">
-    <div *ngIf="formErrors.street" class="my-alert-danger">
-      <p>{{ formErrors.street }}</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="city">Město</label>
-    <input type="text" class="form-control" id="city"
-           [(ngModel)]="tarifRegistration.city" name="city"
-           #city="ngModel">
-    <div *ngIf="formErrors.city" class="my-alert-danger">
-      <p>{{ formErrors.city }}</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="psc">PSČ</label>
-    <input type="text" class="form-control" id="psc"
-           [(ngModel)]="tarifRegistration.psc" name="psc"
-           #psc="ngModel">
-    <div *ngIf="formErrors.psc" class="my-alert-danger">
-      <p>{{ formErrors.psc }}</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="country">Stát</label>
-    <input type="text" class="form-control" id="country"
-           [(ngModel)]="tarifRegistration.country" name="country"
-           #country="ngModel">
-    <div *ngIf="formErrors.country" class="my-alert-danger">
-      <p>{{ formErrors.country }}</p>
-    </div>
-  </div>
+<div class="clearfix"></div>
+<h4>Rekapitulace objednávky</h4>
+<div  class="col-sm-offset-1 col-lg-offset-2 col-xs-12 col-sm-10 col-lg-8">
+  <table class="table table-bordered">
+    <tr>
+      <th>Tarif</th>
+      <td>{{tarifs[tarifRegistration.type]}}</td>
+    </tr>
+    <tr>
+      <th>Cena</th>
+      <td *ngIf="tarifsPrice[tarifRegistration.type] !== 'Individual'">{{tarifsPrice[tarifRegistration.type]}},- Kč (bez DPH)</td>
+      <td *ngIf="tarifsPrice[tarifRegistration.type] === 'Individual'">{{tarifsPrice[tarifRegistration.type]}}</td>
+    </tr>
+    <tr>
+      <th>Perioda platby</th>
+      <td>ročně</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{tarifRegistration.email}}</td>
+    </tr>
+    <tr>
+      <th>Jméno</th>
+      <td>{{tarifRegistration.name}}</td>
+    </tr>
+    <tr>
+      <th>IČO</th>
+      <td>{{tarifRegistration.ico}}</td>
+    </tr>
+    <tr>
+      <th>DIČ</th>
+      <td>{{tarifRegistration.dic}}</td>
+    </tr>
+    <tr>
+      <th>Telefon</th>
+      <td>{{tarifRegistration.phone}}</td>
+    </tr>
+    <tr *ngIf="tarifRegistration.street">
+      <th>Ulice</th>
+      <td>{{tarifRegistration.street}}</td>
+    </tr>
+    <tr *ngIf="tarifRegistration.city">
+      <th>Město</th>
+      <td>{{tarifRegistration.city}}</td>
+    </tr>
+    <tr *ngIf="tarifRegistration.psc">
+      <th>PSČ</th>
+      <td>{{tarifRegistration.psc}}</td>
+    </tr>
+    <tr *ngIf="tarifRegistration.country">
+      <th>Stát</th>
+      <td>{{tarifRegistration.country}}</td>
+    </tr>
 
 
+  </table>
+</div>
+<form (ngSubmit)="onSubmit()" #tarifSummaryForm="ngForm"  class="col-sm-offset-1 col-lg-offset-2 col-xs-12 col-sm-10 col-lg-8">
+  <div class="form-group">
+    <label for="agree">Závazně souhlasím s podmínkami</label>
+    <input type="checkbox"  id="agree" required
+           [(ngModel)]="agreeValue" name="agree"
+           #agree="ngModel" (change)="onChange()">
+    <div *ngIf="showError" class="my-alert-danger">
+      <p>Potřeba souhlasit s podmínkami</p>
+    </div>
+  </div>
 
   <div class="clearfix"></div>
 
   <div class="form-group text-right">
-    <a routerLink="/tarifUser" class="btn btn-default">Zpět na registrační údaje</a>
-    <button type="submit" [disabled]="!tarifInfo.form.valid" class="btn btn-success">Přejít k rekapitulaci</button>
+    <a routerLink="/tarifInfo" class="btn btn-default pull-left">Zpět na doplnění údajů</a>
+    <button type="submit" [disabled]="!agreeValue" class="btn btn-success">Dokončení objednávky tafifu</button>
   </div>
 </form>

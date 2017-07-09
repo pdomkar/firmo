@@ -1,17 +1,16 @@
-import { Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import { LocalStorageService } from 'angular-2-local-storage';
 import { TarifRegistration } from '../tarifRegistration';
 import { Consts } from '../consts';
 @Component({
-    selector: 'my-tarifs',
-    templateUrl: './tarifs.component.html'
+    selector: 'my-navigator',
+    templateUrl: './navigator.component.html'
 })
 
-export class TarifsComponent implements OnInit {
-  tarifs: any;
-  tarifsPrice: any
-
+export class NavigatorComponent implements OnInit {
+  @Input() page: number;
+    tarifRegistration: any;
     constructor(
       private router: Router,
       private localStorageService: LocalStorageService,
@@ -21,21 +20,9 @@ export class TarifsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-      this.tarifs = Consts.TARIFS;
-      this.tarifsPrice = Consts.TARIFS_PRICE;
+      this.tarifRegistration = this.localStorageService.get(Consts.KEY_TARIF_REGISTRATION);
     }
 
 
 
-    chooseTarif(type: number): void {
-      let tarifRegistration: any = this.localStorageService.get(Consts.KEY_TARIF_REGISTRATION);
-      if (tarifRegistration == null) {
-        console.log(tarifRegistration == null);
-        tarifRegistration = new TarifRegistration(type);
-      } else {
-        tarifRegistration.type = type;
-      }
-      this.localStorageService.set(Consts.KEY_TARIF_REGISTRATION, tarifRegistration);
-      this.router.navigate(['/tarifUser']);
-    }
 }

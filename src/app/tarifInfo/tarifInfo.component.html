@@ -1,41 +1,91 @@
+<my-navigator [page]="3"></my-navigator>
+<div class="clearfix"></div>
 <h3 class="pull-left">
-    Tarif - uživatelská data
+    Tarif - Doplňující data
 </h3>
-
-<form (ngSubmit)="onSubmit()" #tarifUserForm="ngForm">
+<div class="clearfix"></div>
+<form (ngSubmit)="onSubmit()" #tarifInfoForm="ngForm" class="col-sm-offset-1 col-lg-offset-2 col-xs-12 col-sm-10 col-lg-8">
   <div class="form-group">
-    <label for="email">Email</label>
-    <input type="text" class="form-control" id="email"
-           required pattern=”^[a-zA-Z0–9_.+-]+@[a-zA-Z0–9-]+.[a-zA-Z0–9-.]+$” minlength="2" maxlength="50"
-           [(ngModel)]="tarifRegistration.email" name="email"
-           #name="ngModel">
-    <div *ngIf="formErrors.email" class="my-alert-danger">
-      <p>{{ formErrors.email }}</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="password">Heslo</label>
-    <input type="text" class="form-control" id="password"
+    <label for="name">Jméno*</label>
+    <input type="text" class="form-control" id="name"
            required minlength="2" maxlength="20"
-           [(ngModel)]="tarifRegistration.password" name="surname" #password="ngModel">
-    <div *ngIf="formErrors.password" class="my-alert-danger">
-      <p>{{ formErrors.password }}</p>
+           [(ngModel)]="tarifRegistration.name" name="name"
+           #name="ngModel">
+    <div *ngIf="formErrors.name" class="my-alert-danger">
+      <p *ngFor="let error of formErrors.name">{{ error }}</p>
     </div>
   </div>
   <div class="form-group">
-    <label>Heslo potvrzení</label>
-    <input type="text" class="form-control" id="passwordConfirm"
-           required validateEqual="password" minlength="2" maxlength="20"
-           [(ngModel)]="tarifRegistration.passwordConfirm" name="passwordConfirm" #passwordConfirm="ngModel">
-    <div *ngIf="formErrors.passwordConfirm" class="my-alert-danger">
-      <p>{{ formErrors.passwordConfirm }}</p>
+    <label for="ico">IČO*</label>
+    <input type="text" class="form-control" id="ico"
+           [(ngModel)]="tarifRegistration.ico" name="ico" required
+           #ico="ngModel">
+    <div *ngIf="formErrors.ico" class="my-alert-danger">
+      <p *ngFor="let error of formErrors.ico">{{ error }}</p>
     </div>
   </div>
+  <div class="form-group">
+    <label for="dic">DIČ*</label>
+    <input type="text" class="form-control" id="dic"
+           [(ngModel)]="tarifRegistration.dic" name="dic" required
+           #dic="ngModel">
+    <div *ngIf="formErrors.dic" class="my-alert-danger">
+      <p *ngFor="let error of formErrors.dic">{{ error }}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="phone">Telefon*</label>
+    <input type="text" class="form-control" id="phone"
+           [(ngModel)]="tarifRegistration.phone" name="phone" required
+           #phone="ngModel">
+    <div *ngIf="formErrors.phone" class="my-alert-danger">
+      <p *ngFor="let error of formErrors.phone">{{ error }}</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="street">Ulice a číslo</label>
+    <input type="text" class="form-control" id="street"
+           [(ngModel)]="tarifRegistration.street" name="street"
+           #street="ngModel">
+    <div *ngIf="formErrors.street" class="my-alert-danger">
+      <p *ngFor="let error of formErrors.street">{{ error }}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="city">Město</label>
+    <input type="text" class="form-control" id="city"
+           [(ngModel)]="tarifRegistration.city" name="city"
+           #city="ngModel">
+    <div *ngIf="formErrors.city" class="my-alert-danger">
+      <p *ngFor="let error of formErrors.city">{{ error }}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="psc">PSČ</label>
+    <input type="text" class="form-control" id="psc"
+           [(ngModel)]="tarifRegistration.psc" name="psc"
+           #psc="ngModel">
+    <div *ngIf="formErrors.psc" class="my-alert-danger">
+      <p *ngFor="let error of formErrors.psc">{{ error }}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="country">Stát</label>
+    <input type="text" class="form-control" id="country"
+           [(ngModel)]="tarifRegistration.country" name="country"
+           #country="ngModel">
+    <div *ngIf="formErrors.country" class="my-alert-danger">
+      <p *ngFor="let error of formErrors.country">{{ error }}</p>
+    </div>
+  </div>
+
+
 
   <div class="clearfix"></div>
 
   <div class="form-group text-right">
-    <a routerLink="/" class="btn btn-default">Zpět na tarify</a>
-    <button type="submit" [disabled]="!tarifUser.form.valid" class="btn btn-success">Zadat doplňující údaje</button>
+    <a routerLink="/tarifUser" class="btn btn-default pull-left">Zpět na registrační údaje</a>
+    <button type="submit" [disabled]="!tarifInfoForm.form.valid" class="btn btn-success">Přejít k rekapitulaci</button>
   </div>
 </form>

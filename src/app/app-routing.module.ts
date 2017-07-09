@@ -1,17 +1,19 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CosmonautsComponent }      from './cosmonauts/cosmonauts.component';
-import { CosmonautAddComponent }      from './cosmonaut-add/cosmonaut-add.component';
-import { CosmonautEditComponent }      from './cosmonaut-edit/cosmonaut-edit.component';
+import { TarifsComponent}      from './tarifs/tarifs.component';
 import { PageNotFoundComponent }      from './page-not-found.component';
+import {TarifUserComponent} from './tarifUser/tarifUser.component';
+import {TarifInfoComponent} from './tarifInfo/tarifInfo.component';
+import {TarifSummaryComponent} from './tarifSummary/tarifSummary.component';
 
 const routes: Routes = [
-    { path: 'cosmonauts',  component: CosmonautsComponent },
-    { path: 'add',  component: CosmonautAddComponent },
-    { path: 'edit/:id',  component: CosmonautEditComponent },
-    {path: '', redirectTo: '/cosmonauts', pathMatch: 'full'},
-    {path: '**', component: PageNotFoundComponent}
+    { path: 'tarifs',  component: TarifsComponent },
+    { path: 'tarifUser',  component: TarifUserComponent },
+    { path: 'tarifInfo',  component: TarifInfoComponent },
+    { path: 'tarifSummary',  component: TarifSummaryComponent },
+    { path: '', redirectTo: '/tarifs', pathMatch: 'full'},
+    { path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({

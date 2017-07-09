@@ -25,7 +25,7 @@
 
       // other libraries
       'rxjs':                      'npm:rxjs',
-      'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
+      'angular-2-local-storage': 'npm:angular-2-local-storage/dist'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -39,7 +39,8 @@
       },
       rxjs: {
         defaultExtension: 'js'
-      }
+      },
+      'angular-2-local-storage': { main: './index.js', defaultExtension: 'js' }
     }
   });
 })(this);
