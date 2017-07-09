@@ -1,0 +1,40 @@
+<h3 class="pull-left">
+    Tarify
+</h3>
+<div class="clearfix"></div>
+<div class="row">
+  <div class="col-sm-6 col-md-3 tarifBlock">
+      <h4>{{tarifs[0]}} Plán</h4>
+      <div class="price">
+        <span *ngIf="tarifsPrice[0] !== 'Individual'">{{tarifsPrice[0]}},- Kč (bez DPH)</span>
+        <span *ngIf="tarifsPrice[0] === 'Individual'">{{tarifsPrice[0]}}</span>
+      </div>
+      <button type="button" (click)="chooseTarif(0)" class="btn btn-primary">Vybrat</button>
+  </div>
+  <div class="col-sm-6 col-md-3 tarifBlock">
+      <h4>{{tarifs[1]}} Plán</h4>
+      <div class="price">
+        <span *ngIf="tarifsPrice[1] !== 'Individual'">{{tarifsPrice[1]}},- Kč (bez DPH)</span>
+        <span *ngIf="tarifsPrice[1] === 'Individual'">{{tarifsPrice[1]}}</span>
+      </div>
+      <button type="button" (click)="chooseTarif(1)" class="btn btn-primary">Vybrat</button>
+  </div>
+  <div class="col-sm-6 col-md-3 tarifBlock">
+      <h4>{{tarifs[2]}} Plán</h4>
+      <div class="price">
+        <span *ngIf="tarifsPrice[2] !== 'Individual'">{{tarifsPrice[2]}},- Kč (bez DPH)</span>
+        <span *ngIf="tarifsPrice[2] === 'Individual'">{{tarifsPrice[2]}}</span>
+      </div>
+      <button type="button" (click)="chooseTarif(2)" class="btn btn-primary">Vybrat</button>
+  </div>
+  <div class="col-sm-6 col-md-3 tarifBlock">
+      <h4>{{tarifs[3]}} Plán</h4>
+      <div class="price">
+        <span *ngIf="tarifsPrice[3] !== 'Individual'">{{tarifsPrice[3]}},- Kč (bez DPH)</span>
+        <span *ngIf="tarifsPrice[3] === 'Individual'">{{tarifsPrice[3]}}</span>
+      </div>
+      <button type="button" (click)="chooseTarif(3)" class="btn btn-primary center-block">Vybrat</button>
+  </div>
+</div>
+
+
